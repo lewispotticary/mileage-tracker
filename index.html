@@ -5,41 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mileage Tracker</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="d-flex justify-content-center">
+    <div class="main-container">
+        <div class="title">
             <h1>Mileage Tracker</h1>
         </div>
 
-        <div class="d-flex justify-content-start flex-row">
-            <div class="d-flex flex-column">
-                <h4>Date</h4>
-                <input class="form-control" type="date">
-            </div>
-            <div class="d-flex flex-column">
-                <h4>Client Name</h4>
-                <input class="form-control" type="text">
-            </div>
-            <div class="d-flex flex-column">
-                <h4>Start Location</h4>
-                <select class="form-select" >
-                    <option value="Bills">Work</option>
-                    <option value="Food">Home</option>
-                    <option value="Miscellaneous">From Previous Location</option>
-                </select>
-            </div>
-            <div class="d-flex flex-column">
-                <h4>Destination Address</h4>
-                <input class="form-control" type="text">
-            </div>
-
-            <button type="button" class="btn btn-primary">Submit</button>
-        </div>
-        
+        <div class="input-container">
+                <div class="date-container">
+                    <h4>Date</h4>
+                    <input type="date">
+                </div>
+                <div class="name-container">
+                    <h4>Client Name</h4>
+                    <input type="text">
+                </div>
+                <div class="start-container">
+                    <h4>Start Location</h4>
+                    <input type="text" id="start-autocomplete">
+                </div>
+                <div class="destination-container">
+                    <h4>Destination Location</h4>
+                    <input type="text" id="destination-autocomplete">
+                </div>    
+                <button type="button" id="submitButton">Submit</button>
+        </div>        
     </div>
-    
-    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+ <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6tcFVFXZfqmhy5vAAs5hPq-Uin2nfWPc&libraries=places&callback=initAutocomplete">
+</script>
+<script src="./script.js"></script>  
 </body>
 </html>
