@@ -1,5 +1,8 @@
 var startAutocomplete;
 var destinationAutocomplete;
+var url = 'https://maps.googleapis.com/maps/api/distancematrix/json?destinations=place_id:ChIJ1cVMNX5U2UcR1QhrxdrHFSU&origins=place_id:ChIJP26lu_ZS2UcRfvkygqmsXXI&units=imperial&key=AIzaSyA6tcFVFXZfqmhy5vAAs5hPq-Uin2nfWPc'
+var submitButton = document.getElementById("submitButton");
+
 
 function initAutocomplete(){
     startAutocomplete = new google.maps.places.Autocomplete(
@@ -13,17 +16,31 @@ function initAutocomplete(){
         {
             componentRestrictions: {'country' : ['UK']},
         });
-    
-        google.maps.event.addListener(startAutocomplete, 'place_changed', onStartChange);
-        google.maps.event.addListener(destinationAutocomplete, 'place_changed', onDestinationChange);
+
 }
 
-function onStartChange() {
-    var startPlace = startAutocomplete.getPlace();
-    console.log(startPlace.place_id);
-};
+function calculateDistance(){
 
-function onDestinationChange() {
+    var startPlace = startAutocomplete.getPlace();
+    console.log(startPlace);
+
     var destinationPlace = destinationAutocomplete.getPlace();
     console.log(destinationPlace.place_id);
-};
+
+    var service = new google.maps.DistanceMatrixService();
+    service.getDistanceMatrix(
+        {
+            origins: [startPlace.formatted_address],
+            destinations: [destinationPlace.formatted_address],
+            travelMode: 'DRIVING',
+            unitSystem: google.maps.UnitSystem.IMPERIAL,
+            
+        }, callback);
+        
+        function callback(response, status) {
+          console.log(response);
+          console.log(status);
+        }
+}
+
+submitButton.addEventListener("click", calculateDistance);
