@@ -14,28 +14,30 @@
         </div>
 
         <div class="input-container">
-                <div class="name-container">
-                    <h4>Client Name</h4>
-                    <input type="text" id="name-input">
-                </div>
-                <div class="date-container">
-                    <h4>Date</h4>
-                    <input type="date" id="date-input">
-                </div>
-                <div class="start-container">
-                    <h4>Start Location</h4>
-                    <input type="text" id="start-autocomplete">
-                </div>
-                <div class="destination-container">
-                    <h4>Destination Location</h4>
-                    <input type="text" id="destination-autocomplete">
-                </div>    
-                <button type="button" id="submitButton">Submit</button>
+            <div class="name-container">
+                <h4>Client Name</h4>
+                <input type="text" id="name-input">
+            </div>
+            <div class="date-container">
+                <h4>Date</h4>
+                <input type="date" id="date-input">
+            </div>
+            <div class="start-container">
+                <h4>Start Location</h4>
+                <input type="text" id="start-autocomplete">
+            </div>
+            <div class="destination-container">
+                <h4>Destination Location</h4>
+                <input type="text" id="destination-autocomplete">
+            </div>    
+            
+            <button type="button" id="submitButton">Submit</button>
         </div>        
     </div>
  <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNYjp-JcJ0zF9wt6lHw03TOVJps_ToiZQ&libraries=places&callback=initAutocomplete">
 </script>
-<script src="./script.js"></script>  
+<script type="module" src="./placeAutocomplete/placeAutocomplete.js"></script>
+<script type="module" src="./calculateDistance/calculateDistance.js"></script>
 </body>
 </html>
