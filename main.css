@@ -1,3 +1,8 @@
+.main-container {
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
 .title {
   display: flex;
   justify-content: center;
@@ -6,5 +11,38 @@
 .input-container {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+}
+
+.input-container input {
+  height: 2rem;
+}
+
+#submitButton {
+  height: 2.37rem;
+  margin-top: auto;
+}
+
+#date-input {
+  height: 2.12rem;
+}
+
+/* Table */
+
+table,
+td,
+th {
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+th,
+td {
+  padding: 15px;
 }
