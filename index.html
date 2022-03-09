@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mileage Tracker</title>
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/main.css">
 </head>
 <body>
     <div class="main-container">
@@ -33,11 +33,21 @@
             
             <button type="button" id="submitButton">Submit</button>
         </div>        
+
+        <div class="table-container">
+            <table id="table">
+                <tr>
+                  <th>Client Name</th>
+                  <th>Date</th>
+                  <th>Start and Destination Location</th>
+                  <th>Traveled Miles</th>
+                </tr>
+              </table>
+        </div>
     </div>
- <script async
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNYjp-JcJ0zF9wt6lHw03TOVJps_ToiZQ&libraries=places&callback=initAutocomplete">
-</script>
+ <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNYjp-JcJ0zF9wt6lHw03TOVJps_ToiZQ&libraries=places&callback=initAutocomplete"></script>
 <script type="module" src="./placeAutocomplete/placeAutocomplete.js"></script>
 <script type="module" src="./calculateDistance/calculateDistance.js"></script>
+<script type="module" src="./table/table.js"></script>
 </body>
 </html>
