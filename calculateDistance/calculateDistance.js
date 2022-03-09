@@ -1,16 +1,18 @@
 import { startAutocomplete } from "../placeAutocomplete/placeAutocomplete.js";
 import { destinationAutocomplete } from "../placeAutocomplete/placeAutocomplete.js";
+import { addTable } from "../table/table.js";
 
 var submitButton = document.getElementById("submitButton");
 submitButton.addEventListener("click", calculateDistance);
 
-export function calculateDistance(){
+var startPlace;
+var destinationPlace;
 
-    var startPlace = startAutocomplete.getPlace();
-    console.log(startPlace);
+function calculateDistance(){
 
-    var destinationPlace = destinationAutocomplete.getPlace();
-    console.log(destinationPlace.place_id);
+    startPlace = startAutocomplete.getPlace();
+
+    destinationPlace = destinationAutocomplete.getPlace();
 
     var service = new google.maps.DistanceMatrixService();
     service.getDistanceMatrix(
@@ -26,4 +28,9 @@ export function calculateDistance(){
           console.log(response);
           console.log(status);
         }
+
+      addTable();
 }
+
+export {startPlace};
+export {destinationPlace};
