@@ -7,6 +7,7 @@ submitButton.addEventListener("click", calculateDistance);
 
 var startPlace;
 var destinationPlace;
+var traveledMiles;
 
 function calculateDistance(){
 
@@ -24,13 +25,12 @@ function calculateDistance(){
             
         }, callback);
         
-        function callback(response, status) {
-          console.log(response);
-          console.log(status);
+        function callback(response) {
+          traveledMiles = Math.round(response.rows[0].elements[0].distance.value * 0.000621);
+          addTable(traveledMiles);
         }
-
-      addTable();
 }
 
 export {startPlace};
 export {destinationPlace};
+export {traveledMiles};

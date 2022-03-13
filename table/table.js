@@ -1,9 +1,10 @@
 import { startPlace } from "../calculateDistance/calculateDistance.js";
 import { destinationPlace } from "../calculateDistance/calculateDistance.js";
+import { traveledMiles } from "../calculateDistance/calculateDistance.js";
 
-export function addTable(){
+export function addTable(traveledMiles){
 
-    console.log(startPlace);
+    console.log(traveledMiles);
 
     var table = document.getElementById("table");
 
@@ -21,8 +22,9 @@ export function addTable(){
     var nameText = document.createTextNode(document.getElementById("name-input").value);
     nameCell.appendChild(nameText);
     var dateText = document.createTextNode(document.getElementById("date-input").value);
-    console.log(dateText);
     dateCell.appendChild(dateText);
     var locationText = document.createTextNode(startPlace.name + " to " + destinationPlace.name);
     locationsCell.appendChild(locationText);
+    var distanceText = document.createTextNode(traveledMiles);
+    distanceCell.appendChild(distanceText);
 }
