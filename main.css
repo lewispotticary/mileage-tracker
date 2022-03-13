@@ -1,6 +1,6 @@
 .main-container {
-  padding-left: 15%;
-  padding-right: 15%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .title {
@@ -27,22 +27,6 @@
   height: 2.12rem;
 }
 
-/* Table */
-
-table,
-td,
-th {
-  border: 1px solid #ddd;
-  text-align: left;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 2rem;
-}
-
-th,
-td {
-  padding: 15px;
+.pac-container {
+  width: 20% !important;
 }
