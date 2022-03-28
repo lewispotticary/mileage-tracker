@@ -3,7 +3,7 @@ var destinationAutocomplete;
 
 google.maps.event.addDomListener(window, 'load', initAutocomplete);
 
-export function initAutocomplete(){
+function initAutocomplete(){
     startAutocomplete = new google.maps.places.Autocomplete(
         document.getElementById("start-autocomplete"),
         {
