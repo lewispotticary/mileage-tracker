@@ -7,12 +7,14 @@ import { dateInput } from "../calculateDistance/calculateDistance.js";
 var tableArray = [];
 var arrayLength;
 var editButton;
+var confirmButton;
+var deleteButton;
 
-export function addTable(traveledMiles){
+export function addTable(){
 
     arrayLength = tableArray.length;
 
-    console.log(arrayLength);
+    console.log(tableArray);
 
     var table = document.getElementById("table");
 
@@ -43,18 +45,36 @@ export function addTable(traveledMiles){
 
     var distanceText = document.createTextNode(milesTraveled);
     distanceCell.appendChild(distanceText);
+
+    //Create edit button
     
-    var editButton = document.createElement("BUTTON");
+    editButton = document.createElement("BUTTON");
     editButton.setAttribute("id", "edit-button" + arrayLength);
     editButton.setAttribute("class", "edit-button");
+    editButton.title = "Edit";
     var editIcon = document.createElement("i");
     editIcon.className = "fa-solid fa-pen-to-square";
     editButton.append(editIcon);
     editCell.appendChild(editButton);
 
+    //Create confirm button
+
+    confirmButton = document.createElement("BUTTON");
+    confirmButton.setAttribute("id", "confirm-button" + arrayLength);
+    confirmButton.setAttribute("class", "confirm-button");
+    confirmButton.title = "Confirm Changes";
+    var confrimIcon = document.createElement("i");
+    confrimIcon.className = "fa-solid fa-check";
+    confirmButton.append(confrimIcon);
+    editCell.append(confirmButton);
+    confirmButton.style.display = "none";
+
+    //Create delete button
+
     tableArray.push([nameInput.value, dateInput.value, startPlace.name, destinationPlace.name]);
 
     editButton = document.getElementsByClassName("edit-button");
+    confirmButton = document.getElementsByClassName("confirm-button");
     for(var i=0; i<editButton.length; i++){
         editButton[i].addEventListener("click", editTable)
     }
@@ -63,12 +83,32 @@ export function addTable(traveledMiles){
 function editTable(){
     var rowIndex = this.id.slice(-1);
     console.log("tableRow" + rowIndex);
-    for(var x=0; x<4; x++){
-        var tableRow = document.getElementsByClassName("tableRow" + rowIndex)[x];
+    for(var i=0; i<4; i++){
+        var tableRow = document.getElementsByClassName("tableRow" + rowIndex)[i];
         tableRow.setAttribute('contenteditable', true);
-        tableRow.style.borderColor = "blue";
-        tableRow.click();
+        tableRow.style.border = "2px solid #ACCEF7";
     }
+
+    editButton[rowIndex].style.display = "none";
+    confirmButton[rowIndex].style.display = "block";
+
+    for(var y=0; y<confirmButton.length; y++){
+        confirmButton[y].addEventListener("click", confirmChanges)
+    }
+}
+
+function confirmChanges(){
+    console.log(this.id);
+    var rowIndex = this.id.slice(-1);
+    for(var i=0; i<4; i++){
+        var tableRow = document.getElementsByClassName("tableRow" + rowIndex)[i];
+        tableRow.setAttribute('contenteditable', false);
+        tableRow.style.border = "1px solid rgb(221, 221, 221)";
+        tableArray[rowIndex][i] = tableRow.innerHTML;
+    }
+    editButton[rowIndex].style.display = "block";
+    confirmButton[rowIndex].style.display = "none";
+    console.log(tableArray);
 }
 
 
