@@ -15,6 +15,7 @@ export function addTable(){
     arrayLength = tableArray.length;
 
     console.log(tableArray);
+    console.log("Array Length:" + arrayLength);
 
     var table = document.getElementById("table");
 
@@ -31,6 +32,7 @@ export function addTable(){
     var distanceCell = newRow.insertCell(3);
     distanceCell.setAttribute("class", "tableRow" + arrayLength);
     var editCell = newRow.insertCell(4);
+    var deleteCell = newRow.insertCell(5);
 
     // Append a text node to the cell
 
@@ -71,10 +73,25 @@ export function addTable(){
 
     //Create delete button
 
+    deleteButton = document.createElement("BUTTON");
+    deleteButton.setAttribute("id", "delete-button" + arrayLength);
+    deleteButton.setAttribute("class", "delete-button");
+    deleteButton.title = "Delete";
+    var deleteIcon = document.createElement("i")
+    deleteIcon.className = "fa-solid fa-trash";
+    deleteButton.append(deleteIcon);
+    deleteCell.append(deleteButton);
+
     tableArray.push([nameInput.value, dateInput.value, startPlace.name, destinationPlace.name]);
 
+    deleteButton = document.getElementsByClassName("delete-button");
+
+    for(var x=0; x<deleteButton.length; x++){
+        deleteButton[x].addEventListener("click", deleteRecord)
+    }
+
+
     editButton = document.getElementsByClassName("edit-button");
-    confirmButton = document.getElementsByClassName("confirm-button");
     for(var i=0; i<editButton.length; i++){
         editButton[i].addEventListener("click", editTable)
     }
@@ -88,6 +105,8 @@ function editTable(){
         tableRow.setAttribute('contenteditable', true);
         tableRow.style.border = "2px solid #ACCEF7";
     }
+
+    confirmButton = document.getElementsByClassName("confirm-button");
 
     editButton[rowIndex].style.display = "none";
     confirmButton[rowIndex].style.display = "block";
@@ -111,6 +130,10 @@ function confirmChanges(){
     console.log(tableArray);
 }
 
-
-
-
+function deleteRecord(){
+    var rowIndex = this.id.slice(-1);
+    tableArray.splice(rowIndex,1);
+    console.log(tableArray);
+    console.log(document.getElementsByClassName("tableRow" + rowIndex)[0]);
+    document.getElementById("table").deleteRow(+rowIndex + +1);  
+}
