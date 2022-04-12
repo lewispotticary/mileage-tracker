@@ -79,6 +79,8 @@ export function addTable(){
     deleteButton.append(deleteIcon);
     deleteCell.append(deleteButton);
 
+    tableTotal();
+
     tableArray.push([nameInput.value, dateInput.value, startPlace.name, destinationPlace.name, milesTraveled]);
 
     deleteButton = document.getElementsByClassName("delete-button");
@@ -132,7 +134,7 @@ function deleteRecord(){
 }
 
 function updateTable(){
-    for(var i=tableArray.length + 1; i>0; i--){
+    for(var i=tableArray.length + 2; i>0; i--){
         document.getElementById("table").deleteRow(i);  
     }
     
@@ -199,6 +201,15 @@ function updateTable(){
             deleteButton.append(deleteIcon);
             deleteCell.append(deleteButton);
 
+            var bottomRow = table.insertRow(table.rows.length);
+            bottomRow.setAttribute("id", "bottomRow");
+            var bottomCell0 = bottomRow.insertCell(0);
+            var bottomCell1 = bottomRow.insertCell(1);
+            var bottomCell2 = bottomRow.insertCell(2);
+            var bottomCell3 = bottomRow.insertCell(3);
+            var totalText = document.createTextNode("Total:");
+            bottomCell3.appendChild(totalText);
+
             deleteButton = document.getElementsByClassName("delete-button");
 
             for(var y=0; y<deleteButton.length; y++){
@@ -211,4 +222,30 @@ function updateTable(){
                 editButton[z].addEventListener("click", editTable)
             }      
     }   
+}
+
+//Append row to bottom of table that calculates total miles and allows to export table as csv.
+
+function tableTotal(){
+    if(document.getElementById("bottomRow") === null){
+        var bottomRow = table.insertRow(table.rows.length);
+        bottomRow.setAttribute("id", "bottomRow");
+        var bottomCell0 = bottomRow.insertCell(0);
+        var bottomCell1 = bottomRow.insertCell(1);
+        var bottomCell2 = bottomRow.insertCell(2);
+        var bottomCell3 = bottomRow.insertCell(3);
+        var totalText = document.createTextNode("Total:");
+        bottomCell3.appendChild(totalText);
+    }
+    else{
+        document.getElementById("table").deleteRow(tableArray.length + 1);
+        var bottomRow = table.insertRow(table.rows.length);
+        bottomRow.setAttribute("id", "bottomRow");
+        var bottomCell0 = bottomRow.insertCell(0);
+        var bottomCell1 = bottomRow.insertCell(1);
+        var bottomCell2 = bottomRow.insertCell(2);
+        var bottomCell3 = bottomRow.insertCell(3);
+        var totalText = document.createTextNode("Total:");
+        bottomCell3.appendChild(totalText);
+    }
 }
