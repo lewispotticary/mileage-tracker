@@ -12,6 +12,8 @@ var deleteButton;
 
 export function addTable(){
 
+    console.log("AddTable")
+
     arrayLength = tableArray.length;
 
     var table = document.getElementById("table");
@@ -79,9 +81,11 @@ export function addTable(){
     deleteButton.append(deleteIcon);
     deleteCell.append(deleteButton);
 
-    tableTotal();
+    tableTotal();   
 
     tableArray.push([nameInput.value, dateInput.value, startPlace.name, destinationPlace.name, milesTraveled]);
+
+    console.log(tableArray);
 
     deleteButton = document.getElementsByClassName("delete-button");
 
@@ -113,6 +117,7 @@ function editTable(){
     for(var y=0; y<confirmButton.length; y++){
         confirmButton[y].addEventListener("click", confirmChanges)
     }
+
 }
 
 function confirmChanges(){
@@ -122,18 +127,29 @@ function confirmChanges(){
         tableRow.setAttribute('contenteditable', false);
         tableRow.style.border = "1px solid rgb(221, 221, 221)";
         tableArray[rowIndex][i] = tableRow.innerHTML;
+        if(i === 3){
+            tableArray[rowIndex][i] = parseInt(tableRow.innerHTML, 10);
+        }
+        else{
+            tableArray[rowIndex][i] = tableRow.innerHTML; 
+        }
     }
     editButton[rowIndex].style.display = "block";
     confirmButton[rowIndex].style.display = "none";
+
+    console.log(tableArray);
 }
 
 function deleteRecord(){
     var rowIndex = this.id.slice(-1);
     tableArray.splice(rowIndex,1);
     updateTable();
+    tableTotal();
 }
 
 function updateTable(){
+    console.log("Update Table");
+    console.log(document.getElementById("table"));
     for(var i=tableArray.length + 2; i>0; i--){
         document.getElementById("table").deleteRow(i);  
     }
@@ -201,15 +217,6 @@ function updateTable(){
             deleteButton.append(deleteIcon);
             deleteCell.append(deleteButton);
 
-            var bottomRow = table.insertRow(table.rows.length);
-            bottomRow.setAttribute("id", "bottomRow");
-            var bottomCell0 = bottomRow.insertCell(0);
-            var bottomCell1 = bottomRow.insertCell(1);
-            var bottomCell2 = bottomRow.insertCell(2);
-            var bottomCell3 = bottomRow.insertCell(3);
-            var totalText = document.createTextNode("Total:");
-            bottomCell3.appendChild(totalText);
-
             deleteButton = document.getElementsByClassName("delete-button");
 
             for(var y=0; y<deleteButton.length; y++){
@@ -220,13 +227,15 @@ function updateTable(){
 
             for(var z=0; z<editButton.length; z++){
                 editButton[z].addEventListener("click", editTable)
-            }      
+            }    
+
     }   
 }
 
 //Append row to bottom of table that calculates total miles and allows to export table as csv.
 
 function tableTotal(){
+    console.log("table total");
     if(document.getElementById("bottomRow") === null){
         var bottomRow = table.insertRow(table.rows.length);
         bottomRow.setAttribute("id", "bottomRow");
@@ -234,6 +243,7 @@ function tableTotal(){
         var bottomCell1 = bottomRow.insertCell(1);
         var bottomCell2 = bottomRow.insertCell(2);
         var bottomCell3 = bottomRow.insertCell(3);
+        bottomCell3.setAttribute("id","totalCell");
         var totalText = document.createTextNode("Total:");
         bottomCell3.appendChild(totalText);
     }
@@ -245,7 +255,12 @@ function tableTotal(){
         var bottomCell1 = bottomRow.insertCell(1);
         var bottomCell2 = bottomRow.insertCell(2);
         var bottomCell3 = bottomRow.insertCell(3);
+        bottomCell3.setAttribute("id","totalCell");
         var totalText = document.createTextNode("Total:");
         bottomCell3.appendChild(totalText);
+    }
+
+    if(table.rows.length === 2){
+        document.getElementById("table").deleteRow(tableArray.length + 1);
     }
 }
