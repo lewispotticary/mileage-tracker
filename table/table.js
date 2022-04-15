@@ -83,7 +83,7 @@ export function addTable(){
 
     tableTotal();   
 
-    tableArray.push([nameInput.value, dateInput.value, startPlace.name, destinationPlace.name, milesTraveled]);
+    tableArray.push([nameInput.value, dateInput.value, startPlace.name + " to " + destinationPlace.name, milesTraveled]);
 
     console.log(tableArray);
 
@@ -122,7 +122,7 @@ function editTable(){
 
 function confirmChanges(){
     var rowIndex = this.id.slice(-1);
-    for(var i=0; i<4; i++){
+    for(var i=0; i<=3; i++){
         var tableRow = document.getElementsByClassName("tableRow" + rowIndex)[i];
         tableRow.setAttribute('contenteditable', false);
         tableRow.style.border = "1px solid rgb(221, 221, 221)";
@@ -155,6 +155,8 @@ function updateTable(){
     }
     
     for(var x=0; x<tableArray.length; x++){ 
+
+        console.log(tableArray);
             
             // Insert a row at the end of the table
             var newRow = table.insertRow(-1);
@@ -177,10 +179,10 @@ function updateTable(){
             var dateText = document.createTextNode(tableArray[x][1]);
             dateCell.appendChild(dateText);
 
-            var locationText = document.createTextNode(tableArray[x][2] + " to " + tableArray[x][3]);
+            var locationText = document.createTextNode(tableArray[x][2]);
             locationsCell.appendChild(locationText);
 
-            var distanceText = document.createTextNode(tableArray[x][4]);
+            var distanceText = document.createTextNode(tableArray[x][3]);
             distanceCell.appendChild(distanceText);
 
             //Create edit button
