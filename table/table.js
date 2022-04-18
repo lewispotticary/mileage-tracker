@@ -262,6 +262,18 @@ function tableTotal(){
         bottomCell3.appendChild(totalText);
     }
 
+    var totalMiles = 0;
+
+    for(var i=0; i<=tableArray.length; i++){
+        var milesTraveled = parseInt(document.getElementsByClassName("tableRow" + i)[3].innerHTML, 10);
+        console.log(milesTraveled);
+        var totalMiles = totalMiles + parseInt(milesTraveled, 10);
+        document.getElementById("totalCell").innerHTML = totalMiles;
+
+        
+        
+    }
+
     if(table.rows.length === 2){
         document.getElementById("table").deleteRow(tableArray.length + 1);
     }
