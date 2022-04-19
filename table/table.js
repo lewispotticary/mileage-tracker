@@ -79,13 +79,15 @@ export function addTable(){
     var deleteIcon = document.createElement("i")
     deleteIcon.className = "fa-solid fa-trash";
     deleteButton.append(deleteIcon);
-    deleteCell.append(deleteButton);
+    deleteCell.append(deleteButton);  
 
-    tableTotal();   
+    tableTotal();
 
     tableArray.push([nameInput.value, dateInput.value, startPlace.name + " to " + destinationPlace.name, milesTraveled]);
 
-    console.log(tableArray);
+    calculateTotal();
+
+    console.log(tableArray.length);
 
     deleteButton = document.getElementsByClassName("delete-button");
 
@@ -138,6 +140,8 @@ function confirmChanges(){
     confirmButton[rowIndex].style.display = "none";
 
     console.log(tableArray);
+
+    calculateTotal()
 }
 
 function deleteRecord(){
@@ -145,6 +149,7 @@ function deleteRecord(){
     tableArray.splice(rowIndex,1);
     updateTable();
     tableTotal();
+    calculateTotal();
 }
 
 function updateTable(){
@@ -231,6 +236,7 @@ function updateTable(){
                 editButton[z].addEventListener("click", editTable)
             }    
 
+            
     }   
 }
 
@@ -262,19 +268,24 @@ function tableTotal(){
         bottomCell3.appendChild(totalText);
     }
 
-    var totalMiles = 0;
-
-    for(var i=0; i<=tableArray.length; i++){
-        var milesTraveled = parseInt(document.getElementsByClassName("tableRow" + i)[3].innerHTML, 10);
-        console.log(milesTraveled);
-        var totalMiles = totalMiles + parseInt(milesTraveled, 10);
-        document.getElementById("totalCell").innerHTML = totalMiles;
-
-        
-        
+    if(table.rows.length === 2){
+        console.log("if table row length");
+        document.getElementById("table").deleteRow(tableArray.length + 1);
     }
 
-    if(table.rows.length === 2){
-        document.getElementById("table").deleteRow(tableArray.length + 1);
+}
+
+function calculateTotal(){
+    var totalMiles = 0;
+
+    for(var i=0; i <= tableArray.length - 1; i++){
+        console.log("----------------------------------");
+        console.log("Array Length: " + tableArray.length);
+        console.log("Counter: " + i); 
+        console.log("Table rows" + table.rows.length);
+        var milesTraveled = parseInt(document.getElementsByClassName("tableRow" + i)[3].innerHTML, 10);
+        console.log("Miles traveled:" + milesTraveled);
+        var totalMiles = totalMiles + parseInt(milesTraveled, 10);
+        document.getElementById("totalCell").innerHTML = "Total: " + totalMiles;
     }
 }
