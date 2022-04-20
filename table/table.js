@@ -9,6 +9,7 @@ var arrayLength;
 var editButton;
 var confirmButton;
 var deleteButton;
+var exportButton;
 
 export function addTable(){
 
@@ -251,9 +252,19 @@ function tableTotal(){
         var bottomCell1 = bottomRow.insertCell(1);
         var bottomCell2 = bottomRow.insertCell(2);
         var bottomCell3 = bottomRow.insertCell(3);
+        var bottomCell4 = bottomRow.insertCell(4);
+
         bottomCell3.setAttribute("id","totalCell");
         var totalText = document.createTextNode("Total:");
         bottomCell3.appendChild(totalText);
+
+        exportButton = document.createElement("BUTTON");
+        exportButton.setAttribute("id", "export-button");
+        exportButton.title = "Download";
+        var exportIcon = document.createElement("i");
+        exportIcon.className = "fa-solid fa-download";
+        exportButton.append(exportIcon);
+        bottomCell4.appendChild(exportButton);
     }
     else{
         document.getElementById("table").deleteRow(tableArray.length + 1);
@@ -263,9 +274,19 @@ function tableTotal(){
         var bottomCell1 = bottomRow.insertCell(1);
         var bottomCell2 = bottomRow.insertCell(2);
         var bottomCell3 = bottomRow.insertCell(3);
+        var bottomCell4 = bottomRow.insertCell(4);
+        
         bottomCell3.setAttribute("id","totalCell");
         var totalText = document.createTextNode("Total:");
         bottomCell3.appendChild(totalText);
+
+        exportButton = document.createElement("BUTTON");
+        exportButton.setAttribute("id", "export-button");
+        exportButton.title = "Download";
+        var exportIcon = document.createElement("i");
+        exportIcon.className = "fa-solid fa-download";
+        exportButton.append(exportIcon);
+        bottomCell4.appendChild(exportButton);
     }
 
     if(table.rows.length === 2){
@@ -277,7 +298,6 @@ function tableTotal(){
 
 function calculateTotal(){
     var totalMiles = 0;
-
     for(var i=0; i <= tableArray.length - 1; i++){
         console.log("----------------------------------");
         console.log("Array Length: " + tableArray.length);
