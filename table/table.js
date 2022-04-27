@@ -3,8 +3,9 @@ import { destinationPlace } from "../calculateDistance/calculateDistance.js";
 import { milesTraveled } from "../calculateDistance/calculateDistance.js";
 import { nameInput } from "../calculateDistance/calculateDistance.js";
 import { dateInput } from "../calculateDistance/calculateDistance.js";
+import { exportTable } from "../exportTable/exportTable.js";
 
-var tableArray = [];
+export var tableArray = [];
 var arrayLength;
 var editButton;
 var confirmButton;
@@ -243,7 +244,7 @@ function updateTable(){
 
 //Append row to bottom of table that calculates total miles and allows to export table as csv.
 
-function tableTotal(){
+function tableTotal(totalMiles){
     console.log("table total");
     if(document.getElementById("bottomRow") === null){
         var bottomRow = table.insertRow(table.rows.length);
@@ -265,6 +266,8 @@ function tableTotal(){
         exportIcon.className = "fa-solid fa-download";
         exportButton.append(exportIcon);
         bottomCell4.appendChild(exportButton);
+
+        exportButton.addEventListener("click", exportTable)
     }
     else{
         document.getElementById("table").deleteRow(tableArray.length + 1);
@@ -287,13 +290,14 @@ function tableTotal(){
         exportIcon.className = "fa-solid fa-download";
         exportButton.append(exportIcon);
         bottomCell4.appendChild(exportButton);
+
+        exportButton.addEventListener("click", exportTable)
     }
 
     if(table.rows.length === 2){
         console.log("if table row length");
         document.getElementById("table").deleteRow(tableArray.length + 1);
     }
-
 }
 
 function calculateTotal(){
@@ -305,7 +309,7 @@ function calculateTotal(){
         console.log("Table rows" + table.rows.length);
         var milesTraveled = parseInt(document.getElementsByClassName("tableRow" + i)[3].innerHTML, 10);
         console.log("Miles traveled:" + milesTraveled);
-        var totalMiles = totalMiles + parseInt(milesTraveled, 10);
+        totalMiles = totalMiles + parseInt(milesTraveled, 10);
         document.getElementById("totalCell").innerHTML = "Total: " + totalMiles;
     }
 }
