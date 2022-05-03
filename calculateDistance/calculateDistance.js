@@ -59,7 +59,11 @@ function calculateDistance(){
         
         function callback(response, status) {
           console.log(status);
-          milesTraveled = Math.round(response.rows[0].elements[0].distance.value * 0.000621);
+          if (document.getElementById('returnCheckbox').checked) {
+            milesTraveled = Math.round(response.rows[0].elements[0].distance.value * 0.000621) * 2;
+          } else {
+            milesTraveled = Math.round(response.rows[0].elements[0].distance.value * 0.000621);
+          } 
           addTable(milesTraveled);
         }
     }
