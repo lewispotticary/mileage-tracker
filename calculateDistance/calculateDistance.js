@@ -60,9 +60,11 @@ function calculateDistance(){
         function callback(response, status) {
           console.log(status);
           if (document.getElementById('returnCheckbox').checked) {
-            milesTraveled = Math.round(response.rows[0].elements[0].distance.value * 0.000621) * 2;
+            milesTraveled = (response.rows[0].elements[0].distance.value * 0.000621) * 2;
+            milesTraveled = Math.round(milesTraveled * 10) / 10;
           } else {
-            milesTraveled = Math.round(response.rows[0].elements[0].distance.value * 0.000621);
+            milesTraveled = response.rows[0].elements[0].distance.value * 0.000621;
+            milesTraveled = Math.round(milesTraveled * 10) / 10;
           } 
           addTable(milesTraveled);
         }

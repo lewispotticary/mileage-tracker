@@ -307,9 +307,9 @@ function calculateTotal(){
         console.log("Array Length: " + tableArray.length);
         console.log("Counter: " + i); 
         console.log("Table rows" + table.rows.length);
-        var milesTraveled = parseInt(document.getElementsByClassName("tableRow" + i)[3].innerHTML, 10);
+        var milesTraveled = parseFloat(document.getElementsByClassName("tableRow" + i)[3].innerHTML, 10);
         console.log("Miles traveled:" + milesTraveled);
-        totalMiles = totalMiles + parseInt(milesTraveled, 10);
-        document.getElementById("totalCell").innerHTML = "Total: " + totalMiles;
+        totalMiles = totalMiles + parseFloat(milesTraveled, 10);
+        document.getElementById("totalCell").innerHTML = "Total: " + Math.round(totalMiles);
     }
 }
