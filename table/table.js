@@ -11,6 +11,7 @@ var editButton;
 var confirmButton;
 var deleteButton;
 var exportButton;
+var deleteAllButton;
 
 export function addTable(){
 
@@ -236,15 +237,13 @@ function updateTable(){
 
             for(var z=0; z<editButton.length; z++){
                 editButton[z].addEventListener("click", editTable)
-            }    
-
-            
+            }               
     }   
 }
 
 //Append row to bottom of table that calculates total miles and allows to export table as csv.
 
-function tableTotal(totalMiles){
+function tableTotal(){
     console.log("table total");
     if(document.getElementById("bottomRow") === null){
         var bottomRow = table.insertRow(table.rows.length);
@@ -254,6 +253,7 @@ function tableTotal(totalMiles){
         var bottomCell2 = bottomRow.insertCell(2);
         var bottomCell3 = bottomRow.insertCell(3);
         var bottomCell4 = bottomRow.insertCell(4);
+        var bottomCell5 = bottomRow.insertCell(5);
 
         bottomCell3.setAttribute("id","totalCell");
         var totalText = document.createTextNode("Total:");
@@ -267,7 +267,17 @@ function tableTotal(totalMiles){
         exportButton.append(exportIcon);
         bottomCell4.appendChild(exportButton);
 
-        exportButton.addEventListener("click", exportTable)
+        exportButton.addEventListener("click", exportTable);
+
+        deleteAllButton = document.createElement("BUTTON");
+        deleteAllButton.setAttribute("id", "delete-all-button");
+        deleteAllButton.title = "Delete all entries";
+        var deleteAllIcon = document.createElement("i");
+        deleteAllIcon.className = "fa-solid fa-eraser";
+        deleteAllButton.append(deleteAllIcon);
+        bottomCell5.appendChild(deleteAllButton);
+
+        deleteAllButton.addEventListener("click", deleteAllEntries);
     }
     else{
         document.getElementById("table").deleteRow(tableArray.length + 1);
@@ -278,6 +288,7 @@ function tableTotal(totalMiles){
         var bottomCell2 = bottomRow.insertCell(2);
         var bottomCell3 = bottomRow.insertCell(3);
         var bottomCell4 = bottomRow.insertCell(4);
+        var bottomCell5 = bottomRow.insertCell(5);
         
         bottomCell3.setAttribute("id","totalCell");
         var totalText = document.createTextNode("Total:");
@@ -291,7 +302,17 @@ function tableTotal(totalMiles){
         exportButton.append(exportIcon);
         bottomCell4.appendChild(exportButton);
 
-        exportButton.addEventListener("click", exportTable)
+        exportButton.addEventListener("click", exportTable);
+
+        deleteAllButton = document.createElement("BUTTON");
+        deleteAllButton.setAttribute("id", "delete-all-button");
+        deleteAllButton.title = "Delete all entries";
+        var deleteAllIcon = document.createElement("i");
+        deleteAllIcon.className = "fa-solid fa-eraser";
+        deleteAllButton.append(deleteAllIcon);
+        bottomCell5.appendChild(deleteAllButton);
+
+        deleteAllButton.addEventListener("click", deleteAllEntries);
     }
 
     if(table.rows.length === 2){
@@ -312,4 +333,12 @@ function calculateTotal(){
         totalMiles = totalMiles + parseFloat(milesTraveled, 10);
         document.getElementById("totalCell").innerHTML = "Total: " + Math.round(totalMiles);
     }
+}
+
+function deleteAllEntries(){
+    for(var i=tableArray.length + 1; i>0; i--){
+        document.getElementById("table").deleteRow(i);  
+    }
+
+    tableArray = [];
 }
