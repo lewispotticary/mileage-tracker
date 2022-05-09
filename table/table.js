@@ -106,8 +106,8 @@ export function addTable(){
 }
 
 function editTable(){
-    var rowIndex = this.id.slice(-1);
-    console.log("tableRow" + rowIndex);
+    var rowIndex = this.id.substring(11);
+    console.log("edit:" + rowIndex);
     for(var i=0; i<4; i++){
         var tableRow = document.getElementsByClassName("tableRow" + rowIndex)[i];
         tableRow.setAttribute('contenteditable', true);
@@ -126,7 +126,8 @@ function editTable(){
 }
 
 function confirmChanges(){
-    var rowIndex = this.id.slice(-1);
+    var rowIndex = this.id.substring(14);
+    console.log("confirm:" + rowIndex);  
     for(var i=0; i<=3; i++){
         var tableRow = document.getElementsByClassName("tableRow" + rowIndex)[i];
         tableRow.setAttribute('contenteditable', false);
@@ -148,7 +149,8 @@ function confirmChanges(){
 }
 
 function deleteRecord(){
-    var rowIndex = this.id.slice(-1);
+    var rowIndex = this.id.substring(13);
+    console.log("delete:" + rowIndex);
     tableArray.splice(rowIndex,1);
     updateTable();
     tableTotal();
