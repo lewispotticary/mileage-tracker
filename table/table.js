@@ -12,6 +12,8 @@ var confirmButton;
 var deleteButton;
 var exportButton;
 var deleteAllButton;
+var journeyArrow;
+var journeyInfo;
 
 export function addTable(){
 
@@ -44,7 +46,15 @@ export function addTable(){
     var dateText = document.createTextNode(dateInput.value);
     dateCell.appendChild(dateText);
 
-    var locationText = document.createTextNode(startPlace.name + " to " + destinationPlace.name);
+    if (document.getElementById('returnCheckbox').checked) {
+        journeyArrow = " <-> ";
+        journeyInfo = " (Return)"
+    } else {
+        journeyArrow = " -> ";
+        journeyInfo = " (One-way)"
+    }
+
+    var locationText = document.createTextNode(startPlace.name + journeyArrow + destinationPlace.name + journeyInfo);
     locationsCell.appendChild(locationText);
 
     var distanceText = document.createTextNode(milesTraveled);
@@ -86,7 +96,15 @@ export function addTable(){
 
     tableTotal();
 
-    tableArray.push([nameInput.value, dateInput.value, startPlace.name + " to " + destinationPlace.name, milesTraveled]);
+    if (document.getElementById('returnCheckbox').checked) {
+        journeyArrow = " <-> ";
+        journeyInfo = " (Return)";
+    } else {
+        journeyArrow = " -> ";
+        journeyInfo = " (One-way)"
+    }
+
+    tableArray.push([nameInput.value, dateInput.value, startPlace.name + journeyArrow + destinationPlace.name + journeyInfo, milesTraveled]);
 
     calculateTotal();
 
