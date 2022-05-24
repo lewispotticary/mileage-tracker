@@ -8,37 +8,47 @@
     <link rel="stylesheet" href="./main.css">
     <link rel="stylesheet" href="./table/table.css">
     <link rel="stylesheet" href="./placeAutocomplete/placeAutocomplete.css">
+    <link rel="stylesheet" href="./modal/modal.css">
 </head>
 <body>
     <div class="main-container">
         <div class="title">
             <h1>Mileage Tracker</h1>
+            <div>
+                <button id="loginButton">Login</button>
+                <button id="signupButton">Signup</button>
+            </div>
         </div>
 
         <div class="input-container">
-            <div class="name-container">
-                <h4>Client Name</h4>
-                <input type="text" id="name-input">
+            <div class="input-container-top">
+                <div class="name-container">
+                    <h4>Client Name</h4>
+                    <input type="text" id="name-input">
+                </div>
+                <div class="date-container">
+                    <h4>Date</h4>
+                    <input type="date" id="date-input">
+                </div>
             </div>
-            <div class="date-container">
-                <h4>Date</h4>
-                <input type="date" id="date-input">
+            <div class="input-container-middle">
+                <div class="start-container">
+                    <h4>Start Location</h4>
+                    <input type="text" id="start-autocomplete">
+                </div>
+                <div class="destination-container">
+                    <h4>Destination Location</h4>
+                    <input type="text" id="destination-autocomplete">
+                </div>    
             </div>
-            <div class="start-container">
-                <h4>Start Location</h4>
-                <input type="text" id="start-autocomplete">
+            <div class="input-container-bottom">
+                <div id="return-container">
+                    <h4>Return Journey</h4>
+                    <input type="checkbox" id="returnCheckbox">
+                </div>
+                
+                <button type="button" id="submitButton">Submit</button>
             </div>
-            <div class="destination-container">
-                <h4>Destination Location</h4>
-                <input type="text" id="destination-autocomplete">
-            </div>    
-
-            <div id="return-container">
-                <h4>Return Journey</h4>
-                <input type="checkbox" id="returnCheckbox">
-            </div>
-            
-            <button type="button" id="submitButton">Submit</button>
         </div>        
 
         <div class="table-container">
@@ -51,6 +61,23 @@
                 </tr>        
             </table>
         </div>
+
+        <!-- The Modal -->
+        <div id="login-modal" class="modal">
+            <!-- Modal content -->
+            <div class="login-content">
+                <span class="login-close">&times;</span>
+                <div id="login-container">
+                    <form class="login">
+                        <h2>Login</h2>
+                        <input type="email" name="email" placeholder="Email">
+                        <input type="password" name="password" placeholder="Password">
+                        <p id="login-error"></p>
+                        <button>Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNYjp-JcJ0zF9wt6lHw03TOVJps_ToiZQ&libraries=places&callback=initAutocomplete"></script>
 <script src="https://kit.fontawesome.com/1017b39eb2.js" crossorigin="anonymous"></script>
@@ -58,5 +85,7 @@
 <script type="module" src="./placeAutocomplete/placeAutocomplete.js"></script>
 <script type="module" src="./calculateDistance/calculateDistance.js"></script>
 <script type="module" src="./table/table.js"></script>
+<script type="module" src="./modal/modal.js"></script>
+<script type="module" src="./backend/firebase.js"></script>
 </body>
 </html>
