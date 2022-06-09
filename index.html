@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="main-container">
-        <div class="title">
+        <div class="header">
             <h1>Mileage Tracker</h1>
             <div>
                 <button id="loginButton">Login</button>
@@ -21,33 +21,19 @@
         </div>
 
         <div class="input-container">
-            <div class="input-container-top">
-                <div class="name-container">
-                    <h4>Client Name</h4>
-                    <input type="text" id="name-input">
-                </div>
-                <div class="date-container">
-                    <h4>Date</h4>
+                <div class="input-container-row-1">
+                    <input placeholder="Client Name" type="text" id="name-input">             
                     <input type="date" id="date-input">
+                    <input placeholder="Start Location" type="text" id="start-autocomplete">
+                    <input placeholder="Destination Location" type="text" id="destination-autocomplete">
+                    <div id="return-container">
+                        <h4>Return Journey</h4>
+                        <input placeholder="test" type="checkbox" id="returnCheckbox">
+                    </div>         
                 </div>
-            </div>
-            <div class="input-container-middle">
-                <div class="start-container">
-                    <h4>Start Location</h4>
-                    <input type="text" id="start-autocomplete">
+                <div class="input-container-row-2">
+                    <button type="button" id="submitButton">Submit</button>
                 </div>
-                <div class="destination-container">
-                    <h4>Destination Location</h4>
-                    <input type="text" id="destination-autocomplete">
-                </div>    
-            </div>
-            <div class="input-container-bottom">
-                <div id="return-container">
-                    <h4>Return Journey</h4>
-                    <input type="checkbox" id="returnCheckbox">
-                </div>
-                
-                <button type="button" id="submitButton">Submit</button>
             </div>
         </div>        
 
@@ -62,9 +48,9 @@
             </table>
         </div>
 
-        <!-- The Modal -->
+        <!-- Login Modal -->
         <div id="login-modal" class="modal">
-            <!-- Modal content -->
+            <!-- Login Modal content -->
             <div class="login-content">
                 <span class="login-close">&times;</span>
                 <div id="login-container">
@@ -73,6 +59,23 @@
                         <input type="email" name="email" placeholder="Email">
                         <input type="password" name="password" placeholder="Password">
                         <p id="login-error"></p>
+                        <button>Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sign Up Modal -->
+        <div id="signup-modal" class="modal">
+            <!-- Sign Up Modal content -->
+            <div class="signup-content">
+                <span class="signup-close">&times;</span>
+                <div id="signup-container">
+                    <form class="signup">
+                        <h2>Signup</h2>
+                        <input type="email" name="email" placeholder="Email">
+                        <input type="password" name="password" placeholder="Password">
+                        <p id="signup-error"></p>
                         <button>Login</button>
                     </form>
                 </div>

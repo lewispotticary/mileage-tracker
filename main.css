@@ -1,30 +1,85 @@
-.main-container {
-  padding-left: 10%;
-  padding-right: 10%;
+*{
+  padding: 0;
+  margin: 0;
 }
 
-.title {
+/* Header */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: auto;
+  background-color: black;
+  color: white;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  margin-bottom: 50px;
+}
+
+.header button{
+    width: 75px;
+}
+
+/* Input Container */
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+.input-container-row-1{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.input-container-row-2{
   display: flex;
   justify-content: center;
 }
 
-.input-container {
+#return-container{
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 34px;
 }
 
-.input-container input {
-  height: 2rem;
+#return-container h4{
+  margin-bottom: 1rem;
+}
+
+#loginButton {
+  height: 2.37rem;
+}
+
+#signupButton {
+  height: 2.37rem;
 }
 
 #submitButton {
   height: 2.37rem;
-  margin-top: auto;
+  width: 25%;
 }
 
-#date-input {
+#name-input, #start-autocomplete, #destination-autocomplete {
   height: 2.12rem;
+  width: 20%;
+}
+
+#date-input{
+  height: 2.12rem;
+}
+
+#table button {
+  width: 30px;
+  height: 30px;
 }
 
 .pac-container {
@@ -35,4 +90,39 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.table-container{
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+/* Media Queries */
+
+@media only screen and (max-width: 900px) {
+  .table-container{
+    margin-right: 1%;
+    margin-left: 1%;
+  }
+  .input-container{
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+}
+
+@media only screen and (max-width: 750px) {
+  .input-container-row-1{
+    display: flex;
+    flex-direction: column;
+  }
+  #name-input, #start-autocomplete, #destination-autocomplete, #date-input{
+    width: 100%;
+    margin-bottom: 2rem;
+  }
+  #submitButton {
+    width: 75%;
+  }
+  .input-container-row-1{
+    margin-bottom: 0;
+  }
 }
