@@ -27,22 +27,34 @@ var userID;
 var username;
 const loginButton = document.getElementById("loginButton");
 const signupButton = document.getElementById("signupButton");
+const welcomeText = document.getElementById("welcomeText");
 
 onAuthStateChanged(auth, (user) => {
     if(user){
+        console.log(user);
         userID = user.uid;
         username = auth.currentUser.displayName;
+        welcomeText.innerText = "Hi, " + username;
         loginButton.style.display = 'none';
         signupButton.style.display = 'none';
+        logoutButton.style.display = 'block';
+        welcomeText.style.display = 'flex';
+    }
+    else{
+        logoutButton.style.display = 'none';
+        welcomeText.style.display = 'none';
+        loginButton.style.display = 'block';
+        signupButton.style.display = 'block';
     }
 });
 
 var signup = document.getElementsByClassName("signup")[0];
 var login = document.getElementsByClassName("login")[0];
+var signupModal = document.getElementById("signup-modal");
 
 //Sign Up Function
 
-const signupForm = document.querySelector('.signup')
+const signupForm = document.querySelector('.signup');
 
 signupForm.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -53,10 +65,12 @@ signupForm.addEventListener('submit', (e) => {
 
   createUserWithEmailAndPassword(auth, email, password)
     .then((cred) => {
+      signupModal.style.display = "none";
       updateProfile(auth.currentUser, {
         displayName: name
       })
-      //username = auth.currentUser.displayName;
+      welcomeText.innerText = "Hi, " + name;
+      singup.reset();
     })
     .catch((err) => {
         console.log(err.message)
@@ -65,7 +79,8 @@ signupForm.addEventListener('submit', (e) => {
 
 //Sign In Function
 
-const loginForm = document.querySelector('.login')
+const loginForm = document.querySelector('.login');
+var loginModal = document.getElementById("login-modal");
 
 loginForm.addEventListener('submit', (e) => {
   e.preventDefault()
@@ -78,7 +93,8 @@ loginForm.addEventListener('submit', (e) => {
 
   signInWithEmailAndPassword(auth, email, password)
     .then(() => {
-      loginForm.reset();
+        login.reset();
+        loginModal.style.display = "none";
     })
     .catch((err) => {
         console.log(err.message)
@@ -88,8 +104,6 @@ loginForm.addEventListener('submit', (e) => {
 //Log Out Function
 
 const logoutButton = document.getElementById("logoutButton");
-
-console.log(logoutButton);
 
 logoutButton.addEventListener('click', () => {
   signOut(auth)
