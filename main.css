@@ -19,6 +19,12 @@
   margin-bottom: 50px;
 }
 
+.header div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .header button{
     width: 75px;
 }
@@ -55,11 +61,12 @@
   margin-bottom: 1rem;
 }
 
-#loginButton {
+#logoutButton, #signupButton{
   height: 2.37rem;
+  margin-left: 1rem;
 }
 
-#signupButton {
+#loginButton{
   height: 2.37rem;
 }
 
@@ -71,10 +78,12 @@
 #name-input, #start-autocomplete, #destination-autocomplete {
   height: 2.12rem;
   width: 20%;
+  padding-left: 5px;
 }
 
 #date-input{
   height: 2.12rem;
+  padding-left: 5px;
 }
 
 #table button {
@@ -83,7 +92,7 @@
 }
 
 .pac-container {
-  width: 20% !important;
+  width: 30% !important;
 }
 
 #return-container {
@@ -92,9 +101,18 @@
   align-items: center;
 }
 
+#returnCheckbox{
+  height: 18px;
+  width: 18px;
+}
+
 .table-container{
   margin-right: 10%;
   margin-left: 10%;
+}
+
+#loginButton, #signupButton, #logoutButton, #welcomeText{
+  display: none;
 }
 
 /* Media Queries */
@@ -124,5 +142,8 @@
   }
   .input-container-row-1{
     margin-bottom: 0;
+  }
+  .pac-container {
+    width: 91% !important;
   }
 }
