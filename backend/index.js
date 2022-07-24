@@ -13,15 +13,24 @@ app.use(express.json());
 
 app.post("/mileage_data", async(req, res) => {
     try {
-        const { client_name } = req.body;
-        const test = await pool.query("INSERT INTO mileage_data (client_name) VALUES($1)", [client_name])
-        console.log(req.body);
+        const { client_name, locations, miles_traveled, travel_date, user_id } = req.body;
+        const newTravel = await pool.query("INSERT INTO mileage_data (client_name, locations, miles_traveled, travel_date, user_id) VALUES($1, $2, $3, $4, $5) RETURNING *", [client_name, locations, miles_traveled, travel_date, user_id])
+        res.json(newTravel.rows[0])
     } catch (err) {
         console.error(err.message);
     }
 })
 
 //Get
+
+app.get("/mileage_data", async(req, res) => {
+    try {
+        const allData = await pool.query("SELECT * FROM mileage_data")
+        res.json(allData.rows)
+    } catch (err) {
+        console.error(err.message);
+    }
+})
 
 //Update
 
