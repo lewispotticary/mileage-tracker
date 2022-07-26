@@ -21,12 +21,24 @@ app.post("/mileage_data", async(req, res) => {
     }
 })
 
-//Get
+//Get all data
 
 app.get("/mileage_data", async(req, res) => {
     try {
         const allData = await pool.query("SELECT * FROM mileage_data")
-        res.json(allData.rows)
+        res.json(allData.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
+//Get data by USER_ID
+
+app.get("/mileage_data/:user", async(req, res) => {
+    try {
+        const { user } = req.params;
+        const userData = await pool.query("SELECT * FROM mileage_data WHERE user_id = $1", [user]);
+        res.json(userData.rows);
     } catch (err) {
         console.error(err.message);
     }
