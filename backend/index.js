@@ -46,6 +46,17 @@ app.get("/mileage_data/:user", async(req, res) => {
 
 //Update
 
+app.put("/mileage_data/:id", async(req, res) => {
+    try {
+        const { id } = req.params;
+        const { client_name, locations, miles_traveled, travel_date, user_id } = req.body;
+        const updateData = await pool.query("UPDATE mileage_data SET client_name = $1, locations = $2, miles_traveled = $3, travel_date = $4, user_id = $5 WHERE id = $6", [client_name, locations, miles_traveled, travel_date, user_id, id])
+        res.json("Data was updated")
+    } catch (err) {
+        console.error(err.message);
+    }
+})
+
 //Delete
 
 app.listen(5000, () => {
